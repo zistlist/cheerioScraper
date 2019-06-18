@@ -39,7 +39,7 @@ class App extends React.Component {
 
     console.log('sending: ', this.state.val);
     axios.post('https://us-central1-myproject-dbb0e.cloudfunctions.net/scraper', {
-        data: 'https://www.amazon.com/BLUBOON-Vintage-Backpack-Leather-Rucksack/dp/B019NZHMQW?pf_rd_p=3ebd7bb8-e4db-4762-b094-2aa45768a3b5&pd_rd_wg=V4BMS&pf_rd_r=J94E746D6XDKKW70QVHQ&ref_=pd_gw_cr_cartx&pd_rd_w=2zLvw&pd_rd_r=815dbb47-13d6-4c43-8a0b-fbbdd28a5ad7'
+        data: this.state.val
       })
       .then((res) => {
         console.log(res.data);
@@ -47,7 +47,8 @@ class App extends React.Component {
           price: res.data.price,
           product: res.data.item_name,
           description: res.data.description,
-          image: res.data.photo
+          image: res.data.photo,
+          val: '',
         })
       })
       .catch((err) => {
