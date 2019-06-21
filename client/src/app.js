@@ -17,10 +17,10 @@ class App extends React.Component {
 
   handleFireBase() {
     console.log('sending post', {
-      data: 'https://www.amazon.com/Ferro-Aldo-MFA806035-Mid-Top-Lace-Up/dp/B01NCWLJ8G?pf_rd_p=3ebd7bb8-e4db-4762-b094-2aa45768a3b5&pd_rd_wg=v87VZ&pf_rd_r=BVJ1BJK6RHWZTT2AAH79&ref_=pd_gw_cr_cartx&pd_rd_w=DE9qE&pd_rd_r=37fce3d5-d3ea-4d67-b2fd-c46f87610b02'
+      data: 'https://www.amazon.com/Amazon-Essentials-Mens-Slim-Fit-Stretch/dp/B07BJL3JRW/ref=sr_1_2_sspa?keywords=jeans&qid=1561084472&s=gateway&sr=8-2-spons&psc=1'
     });
     axios.post('https://us-central1-myproject-dbb0e.cloudfunctions.net/scraper', {
-        data: 'https://www.amazon.com/Ferro-Aldo-MFA806035-Mid-Top-Lace-Up/dp/B01NCWLJ8G?pf_rd_p=3ebd7bb8-e4db-4762-b094-2aa45768a3b5&pd_rd_wg=v87VZ&pf_rd_r=BVJ1BJK6RHWZTT2AAH79&ref_=pd_gw_cr_cartx&pd_rd_w=DE9qE&pd_rd_r=37fce3d5-d3ea-4d67-b2fd-c46f87610b02'
+        data: 'https://www.amazon.com/Amazon-Essentials-Mens-Slim-Fit-Stretch/dp/B07BJL3JRW/ref=sr_1_2_sspa?keywords=jeans&qid=1561084472&s=gateway&sr=8-2-spons&psc=1'
       })
       .then((res) => {
         console.log('firebaseresponse ', res.data);
