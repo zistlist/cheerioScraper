@@ -9,6 +9,8 @@ class App extends React.Component {
       product: '',
       description: [],
       image: '',
+      id: '',
+      onSale: '',
     }
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,17 +40,19 @@ class App extends React.Component {
     };
 
     console.log('sending: ', this.state.val);
-    axios.post('https://us-central1-myproject-dbb0e.cloudfunctions.net/scraper', {
+    axios.post('/', {
         data: this.state.val
       })
       .then((res) => {
         console.log(res.data);
         this.setState({
           price: res.data.price,
-          product: res.data.item_name,
+          product: res.data.name,
           description: res.data.description,
-          image: res.data.photo,
+          image: res.data.imageUrl,
           val: '',
+          id: res.data.id,
+          onSale: res.data.onSale,
         })
       })
       .catch((err) => {
@@ -69,6 +73,8 @@ class App extends React.Component {
       price,
       description,
       image,
+      id,
+      onSale,
     } = this.state;
     return (
       <div>
@@ -80,7 +86,10 @@ class App extends React.Component {
       <h2>data: </h2>
       <p>product: {product}</p>
       <img src={image} alt='product'></img>
+      <p>imgUrl: {image} </p>
       <p>price: {price}</p>
+      <p>id: {id}</p>
+      <p>onSale: {onSale} </p>
       <ul>{description.map((item) => {
           return <li>{item}</li>
         })}</ul>

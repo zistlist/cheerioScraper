@@ -20,11 +20,18 @@ app.use(bodyParser.json());
 app.post('*', (req, res) => {
   let itemUrl = req.body.data;
   if (!itemUrl) {
-    itemUrl = 'https://www.amazon.com/Ferro-Aldo-MFA806035-Mid-Top-Lace-Up/dp/B01NCWLJ8G?pf_rd_p=3ebd7bb8-e4db-4762-b094-2aa45768a3b5&pd_rd_wg=v87VZ&pf_rd_r=BVJ1BJK6RHWZTT2AAH79&ref_=pd_gw_cr_cartx&pd_rd_w=DE9qE&pd_rd_r=37fce3d5-d3ea-4d67-b2fd-c46f87610b02';
+    res.status(400).send('No url detected');
+    return;
   }
-
+  const subStr = itemUrl.split('?');
+  const checkForAmazon = itemUrl.split('/')[2];
+if (subStr[1].length <= 1 || checkForAmazon !== 'www.amazon.com') {
+  res.status(400).send('Invalid url. check for incomplete url string or not an amazon product url');
+  return;
+}
   cheerioScraper(res, itemUrl);
 });
+
 
 
 
